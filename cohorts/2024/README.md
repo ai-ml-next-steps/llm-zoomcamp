@@ -13,6 +13,8 @@ Important links:
 
 * [Homework](01-intro/homework.md)
 
+[MySolution-01-intro/homework.md](https://github.com/ai-ml-next-steps/llm-zoomcamp/blob/main/01-intro/01-intro-homework.ipynb)
+
 ## Module 2: Open-source LLMs and self-hosting LLMs
 
 * Homework
