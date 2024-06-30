@@ -19,5 +19,7 @@ Important links:
 
 * Homework
 
+[serving-hugging-face-models-from-local](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/02-open-source/serving-hugging-face-models.md)
+
 ## Module 3: Vector databases
 
