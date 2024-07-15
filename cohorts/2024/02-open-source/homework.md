@@ -4,6 +4,8 @@ In this homework, we'll experiment more with Ollama
 
 > It's possible that your answers won't match exactly. If it's the case, select the closest one.
 
+Solution: https://www.loom.com/share/f04a63aaf0db4bf58194ba425f1fcffa
+
 ## Q1. Running Ollama with Docker
 
 Let's run ollama with Docker. We will need to execute the 
@@ -24,6 +26,18 @@ To find out, enter the container and execute `ollama` with the `-v` flag.
 
 ### Answer: `0.1.45`
 
+```
+$ollama -v
+
+ollama version is 0.2.3
+```
+
+Aleternative solution 
+
+```
+$ docker exec -it ollama ollama -v                                                                            24-07-14 @ 13:45
+ollama version is 0.1.48
+```
 
 ## Q2. Downloading an LLM 
 
@@ -45,6 +59,9 @@ What's the content of the file related to gemma?
 ### Answer:
 ```
 /Users/manaschaity/.ollama/models/manifests/registry.ollama.ai/library/gemma
+
+- Inside docker 
+root@3b6c5d62ea05:~/.ollama/models/manifests/registry.ollama.ai/library/gemma#
 ```
 
 Model content.
@@ -83,11 +100,22 @@ Model content.
 }
 ```
 
+### Download the model inside the image 
+
+```
+~$ docker exec -it ollama ollama pull gemma:2b 
+```
+
 ## Q3. Running the LLM
 
 Test the following prompt: "10 * 10". What's the answer?
 
 ### Answer: 
+
+```
+~$ docker exec -it ollama ollama run gemma:2b   
+```
+
 ```
 >>> 10 * 10
 Sure, here is the answer to the question:
@@ -164,6 +192,17 @@ And run it:
 docker run -it --rm -p 11434:11434 ollama-gemma2b
 ```
 
+```
+$ docker ps                                                                                      24-07-14 @ 20:25
+CONTAINER ID   IMAGE            COMMAND               CREATED       STATUS       PORTS                      NAMES
+5d1732d1c071   ollama-gemma2b   "/bin/ollama serve"   3 hours ago   Up 3 hours   0.0.0.0:11434->11434/tcp   vigilant_solomon
+```
+
+
+```
+$ docker exec -it 5d1732d1c071 bash
+```
+
 We can connect to it using the OpenAI client
 
 Let's test it with the following prompt:
@@ -180,6 +219,22 @@ response = client.chat.completions.create(
     temperature=0.0
 )
 ```
+
+
+```
+client = OpenAI(
+   base_url = 'http://locahost:11434/v1/',
+   api_key='ollama',
+)
+```
+
+```
+response = client.chat.completions.create(
+   model = 'gemma:2b',
+   messages = [{"role" : "user", "content" : prompt}]
+)
+```
+
 
 How many completion tokens did you get in response?
 
