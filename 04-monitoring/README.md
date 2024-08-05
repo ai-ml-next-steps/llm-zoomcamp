@@ -67,6 +67,9 @@ Links:
 * [results-gpt4o-mini.csv](data/results-gpt4o-mini.csv) (answers from GPT-4o-mini)
 * [results-gpt4o-mini-cosine.csv](data/results-gpt4o-mini-cosine.csv) (answers with cosine calculated from GPT-4o-mini)
 
+![compare-3.5-4omini-4.png](compare-3.5-4omini-4.png)
+
+<b>Conclusion: GPT-4-Omni</b>
 
 ## 4.5 Offline RAG evaluation: LLM as a judge
 
